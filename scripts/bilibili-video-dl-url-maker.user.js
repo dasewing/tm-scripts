@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bilibili video download URL maker
 // @namespace    https://github.com/dasewing/tm-scripts
-// @version      1.2.0
+// @version      1.3.0
 // @description  Copy Bilibili cover-card URLs to the clipboard.
 // @author       David
 // @match        https://*.bilibili.com/*
