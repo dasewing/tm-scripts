@@ -1,6 +1,6 @@
 # tm-scripts
 
-个人 Tampermonkey 用户脚本集合。优先使用 `scripts/` 下的 `.user.js` 文件安装；同目录的 `.txt` 文件保留为历史原始版本。
+个人 Tampermonkey 用户脚本集合。请使用 `scripts/` 下的 `.user.js` 文件安装。
 
 ## 脚本
 
@@ -33,4 +33,4 @@
 
 ## 发布
 
-每个版本通过 Git tag 发布。当前版本：`v1.1.0`。
+每个版本通过 Git tag 发布。当前版本：`v1.1.1`。
