@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bilibili video download URL maker
 // @namespace    https://github.com/dasewing/tm-scripts
-// @version      1.3.0
+// @version      1.3.1
 // @description  Copy Bilibili cover-card URLs to the clipboard.
 // @author       David
 // @match        https://*.bilibili.com/*
@@ -357,8 +357,13 @@
         return [...document.querySelectorAll('a.bili-cover-card[href]')]
             .map((link) => {
                 const value = new URL(link.href, location.href).href;
-                const label = link.getAttribute('title')?.trim()
+                const titleElement = link
+                    .closest('.bili-video-card')
+                    ?.querySelector('.bili-video-card__title[title]');
+                const label = titleElement?.getAttribute('title')?.trim()
+                    || link.getAttribute('title')?.trim()
                     || link.textContent?.trim()
+                    || link.querySelector('img[alt]')?.getAttribute('alt')?.trim()
                     || value;
 
                 return { label, value };
