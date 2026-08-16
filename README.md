@@ -16,9 +16,9 @@
 
 - 安装：[bilibili-video-dl-url-maker.user.js](https://raw.githubusercontent.com/dasewing/tm-scripts/main/scripts/bilibili-video-dl-url-maker.user.js)
 - 页面：Bilibili 页面
-- 用法：点击页面右下角的“复制视频链接”按钮；也可以在控制台执行 `make_bl_download_scripts()`
+- 用法：点击“复制视频链接”可复制全部 URL；点击“选择视频”可在弹层中多选视频后复制，也可以在控制台执行 `make_bl_download_scripts()`
 
-提取 `.bili-cover-card` 链接，仅生成换行分隔的 URL 并复制到剪贴板，完成后显示记录数 Toast。
+提取 `.bili-cover-card` 链接，仅生成换行分隔的 URL 并复制到剪贴板，完成后显示记录数 Toast。选择弹层默认全选，并提供“全选/取消全选”按钮。
 
 通用 UI 类源码位于 [`scripts/common/user-script-ui.js`](./scripts/common/user-script-ui.js)，发布版会将其内联到 `.user.js`，无需额外加载依赖。
 
