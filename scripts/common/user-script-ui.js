@@ -1,18 +1,4 @@
-// ==UserScript==
-// @name         Bilibili video download URL maker
-// @namespace    https://github.com/dasewing/tm-scripts
-// @version      1.2.0
-// @description  Copy Bilibili cover-card URLs to the clipboard.
-// @author       David
-// @match        https://*.bilibili.com/*
-// @grant        none
-// @run-at       document-idle
-// ==/UserScript==
-
 (function (global) {
-    'use strict';
-
-    // Bundled from scripts/common/user-script-ui.js for standalone installation.
     class UserScriptUI {
         static createButton({ id, text = '复制', onClick }) {
             const existingButton = id ? document.getElementById(id) : null;
@@ -124,34 +110,4 @@
     }
 
     global.TMScriptUI = global.TMScriptUI || UserScriptUI;
-
-    function getVideoUrls() {
-        return [...document.querySelectorAll('a.bili-cover-card[href]')]
-            .map((link) => new URL(link.href, location.href).href)
-            .filter(Boolean);
-    }
-
-    global.make_bl_download_scripts = function makeBlDownloadScripts() {
-        const result = getVideoUrls().join('\n');
-        console.log(result);
-        return result;
-    };
-
-    global.TMScriptUI.createButton({
-        id: 'tm-bilibili-video-dl-url-maker',
-        text: '复制视频链接',
-        onClick: async () => {
-            const result = global.make_bl_download_scripts();
-            const count = result ? result.split('\n').length : 0;
-            const copied = await global.TMScriptUI.copyToClipboard(result);
-
-            if (copied) {
-                global.TMScriptUI.toast(`复制成功，共 ${count} 条`);
-            } else if (count) {
-                global.TMScriptUI.toast(`复制失败，共 ${count} 条`, { type: 'error' });
-            } else {
-                global.TMScriptUI.toast('复制失败：未找到链接', { type: 'error' });
-            }
-        },
-    });
 })(window);

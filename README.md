@@ -16,9 +16,11 @@
 
 - 安装：[bilibili-video-dl-url-maker.user.js](https://raw.githubusercontent.com/dasewing/tm-scripts/main/scripts/bilibili-video-dl-url-maker.user.js)
 - 页面：Bilibili 页面
-- 用法：在控制台执行 `make_bl_download_scripts()`
+- 用法：点击页面右下角的“复制视频链接”按钮；也可以在控制台执行 `make_bl_download_scripts()`
 
-提取 `.bili-cover-card` 链接，生成 `bbd <URL>` 命令并复制到剪贴板。
+提取 `.bili-cover-card` 链接，仅生成换行分隔的 URL 并复制到剪贴板，完成后显示记录数 Toast。
+
+通用 UI 类源码位于 [`scripts/common/user-script-ui.js`](./scripts/common/user-script-ui.js)，发布版会将其内联到 `.user.js`，无需额外加载依赖。
 
 ### 微信文章链接自动跳转
 
@@ -33,4 +35,4 @@
 
 ## 发布
 
-每个版本通过 Git tag 发布。当前版本：`v1.1.2`。
+每个版本通过 Git tag 发布。当前版本：`v1.2.0`。
