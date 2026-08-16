@@ -1,0 +1,31 @@
+// ==UserScript==
+// @name         bilibili-video-dl-url-maker
+// @namespace    http://tampermonkey.net/
+// @version      2025-08
+// @description  bilibili-video-dl-url-maker
+// @author       David
+// @match        *.bilibili.com/*
+// @grant        none
+// ==/UserScript==
+
+//(function() {
+//    'use strict';
+
+window.make_bl_download_scripts = function(){
+    var dl_script_arr = [];
+    $$("a.bili-cover-card").forEach(link => {
+        dl_script_arr.push('bbd '+link.href);
+    });
+    console.log(dl_script_arr.join("\n"));
+};
+
+/* (function() {
+    setTimeout(
+        function(){
+            $("div.change-user").append(
+                "<p ><button onclick='window.export_dianfei_json()' >EXPORT</button></p><div id='json_export' class='item-two' style='word-wrap: break-word;word-break: break-all;'></div>"
+            );
+        },
+        3000
+    );
+})(); */

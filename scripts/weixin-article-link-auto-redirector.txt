@@ -1,0 +1,28 @@
+// ==UserScript==
+// @name         mp.weixin auto redirector
+// @namespace    http://tampermonkey.net/
+// @version      2024-11-07
+// @description  weixin-article-link-auto-redirector
+// @author       David
+// @match        https://www.huxiu.com/article/*
+// @match        https://36kr.com/p/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    $(function(){
+    // 'use strict';
+
+        setTimeout(
+            function(){
+                var a_href = $("a[href^='https://mp.weixin.qq.com/s'],[href^='http://mp.weixin.qq.com/s']").attr("href");
+                console.clear();
+                console.log(a_href);
+                if (!a_href) return false;
+                location.href=a_href;
+            },
+            1000
+        );
+
+    });
+})();
