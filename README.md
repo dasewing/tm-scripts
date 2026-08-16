@@ -6,7 +6,7 @@
 
 ### SeedHub：使用 `title` 替换种子链接文本
 
-- 安装：[replace-a-innertext-with-title.user.js](./scripts/replace-a-innertext-with-title.user.js)
+- 安装：[seedhub-a-innertext-title-replacer.user.js](./scripts/seedhub-a-innertext-title-replacer.user.js)
 - 页面：`https://www.seedhub.cc/movies/{id}/`
 - 范围：`.seed-list > ul > li > a[title]`
 
@@ -33,4 +33,4 @@
 
 ## 发布
 
-每个版本通过 Git tag 发布。当前版本：`v1.1.1`。
+每个版本通过 Git tag 发布。当前版本：`v1.1.2`。

@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Replace seed-list link text with title
-// @namespace    https://tampermonkey.net/
-// @version      1.0.0
-// @description  Replace seed-list link text with the title attribute.
+// @name         SeedHub A innerText title replacer
+// @namespace    https://github.com/dasewing/tm-scripts
+// @version      1.1.2
+// @description  Replace SeedHub seed-list link text with the title attribute.
 // @match        https://www.seedhub.cc/movies/*
 // @grant        none
 // @run-at       document-idle
