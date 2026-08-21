@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SeedHub opti
 // @namespace    https://github.com/dasewing/tm-scripts
-// @version      1.4.0
+// @version      1.4.1
 // @description  Replace SeedHub seed titles and decode/copy QR-code links.
 // @match        https://www.seedhub.cc/movies/*
 // @match        https://www.seedhub.cc/link_start/*
@@ -278,7 +278,11 @@
                 try {
                     const value = await decodeQrImage(image);
                     showQrResult(qrcode, value);
-                    UserScriptUI.toast('二维码识别成功');
+                    const copied = await UserScriptUI.copyToClipboard(value);
+                    UserScriptUI.toast(
+                        copied ? '识别并复制成功' : '识别成功，但复制失败',
+                        { type: copied ? 'success' : 'error' },
+                    );
                 } catch (error) {
                     UserScriptUI.toast(error.message || '二维码识别失败', { type: 'error' });
                 }
