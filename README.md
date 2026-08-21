@@ -4,13 +4,13 @@
 
 ## 脚本
 
-### SeedHub：使用 `title` 替换种子链接文本
+### SeedHub：种子标题替换与二维码链接复制
 
-- 安装：[seedhub-a-innertext-title-replacer.user.js](https://raw.githubusercontent.com/dasewing/tm-scripts/main/scripts/seedhub-a-innertext-title-replacer.user.js)
-- 页面：`https://www.seedhub.cc/movies/{id}/`
+- 安装：[seedhub-opti.user.js](https://raw.githubusercontent.com/dasewing/tm-scripts/main/scripts/seedhub-opti.user.js)
+- 页面：`https://www.seedhub.cc/movies/{id}/`、`https://www.seedhub.cc/link_start/*`
 - 范围：`.seed-list > ul > li > a[title]`
 
-将匹配链接的 `innerText` 替换为其 `title` 属性值，并处理后续动态加载的内容。
+将匹配链接的 `innerText` 替换为其 `title` 属性值，并处理后续动态加载的内容。在二维码页面点击“识别二维码”，脚本会将 `#qrcode > img` 解码为可点击链接，并提供“复制链接”按钮。
 
 ### Bilibili：生成视频下载命令
 
