@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SeedHub opti
 // @namespace    https://github.com/dasewing/tm-scripts
-// @version      1.2.0
+// @version      1.4.0
 // @description  Replace SeedHub seed titles and decode/copy QR-code links.
 // @match        https://www.seedhub.cc/movies/*
 // @match        https://www.seedhub.cc/link_start/*
