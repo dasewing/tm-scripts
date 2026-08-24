@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bilibili video download URL maker
 // @namespace    https://github.com/dasewing/tm-scripts
-// @version      1.3.1
+// @version      1.3.2
 // @description  Copy Bilibili cover-card URLs to the clipboard.
 // @author       David
 // @match        https://*.bilibili.com/*
@@ -388,7 +388,7 @@
         return result;
     };
 
-    global.TMScriptUI.createButton({
+    const copyAllButton = global.TMScriptUI.createButton({
         id: 'tm-bilibili-video-dl-url-maker',
         text: '复制视频链接',
         onClick: async () => {
@@ -406,7 +406,7 @@
         },
     });
 
-    global.TMScriptUI.createButton({
+    const selectButton = global.TMScriptUI.createButton({
         id: 'tm-bilibili-video-dl-url-selector',
         text: '选择视频',
         right: '140px',
@@ -434,4 +434,34 @@
             });
         },
     });
+
+    function updateButtonVisibility() {
+        const hasVideoList = getVideoItems().length > 0;
+
+        for (const button of [copyAllButton, selectButton]) {
+            button.style.display = hasVideoList ? '' : 'none';
+        }
+    }
+
+    let visibilityUpdatePending = false;
+
+    function scheduleButtonVisibilityUpdate() {
+        if (visibilityUpdatePending) {
+            return;
+        }
+
+        visibilityUpdatePending = true;
+        window.requestAnimationFrame(() => {
+            visibilityUpdatePending = false;
+            updateButtonVisibility();
+        });
+    }
+
+    const videoListObserver = new MutationObserver(scheduleButtonVisibilityUpdate);
+    videoListObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+    });
+
+    updateButtonVisibility();
 })(window);
