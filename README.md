@@ -22,6 +22,12 @@
 
 通用 UI 类源码位于 [`scripts/common/user-script-ui.js`](./scripts/common/user-script-ui.js)，发布版会将其内联到 `.user.js`，无需额外加载依赖。
 
+### 京东：搜索结果页优化
+
+- 安装：[jd-search-result-optimizer.user.js](https://raw.githubusercontent.com/dasewing/tm-scripts/main/scripts/jd-search-result-optimizer.user.js)
+- 页面：`https://search.jd.com/Search*`
+- 功能：自动隐藏带有“京喜自营”标签的商品卡片，支持搜索结果动态加载。
+
 ### 微信文章链接自动跳转
 
 - 安装：[weixin-article-link-auto-redirector.user.js](https://raw.githubusercontent.com/dasewing/tm-scripts/main/scripts/weixin-article-link-auto-redirector.user.js)
