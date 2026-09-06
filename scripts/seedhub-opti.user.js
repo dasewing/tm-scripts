@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SeedHub opti
 // @namespace    https://github.com/dasewing/tm-scripts
-// @version      1.4.3
+// @version      1.4.4
 // @description  Replace SeedHub seed titles and decode/copy QR-code links.
 // @match        https://www.seedhub.cc/movies/*
 // @match        https://www.seedhub.cc/link_start/*
@@ -204,12 +204,8 @@
         return result.data.trim();
     }
 
-    const COPY_BUTTON_ID = 'tm-seedhub-qr-copy';
-    const COPY_BUTTON_ANCHOR_SELECTOR = '.mobile-pan > span.text';
-
     function showQrResult(qrcode, value) {
         document.getElementById('tm-seedhub-qr-result')?.remove();
-        document.getElementById(COPY_BUTTON_ID)?.remove();
 
         const result = document.createElement('div');
         result.id = 'tm-seedhub-qr-result';
@@ -243,7 +239,6 @@
         }
 
         const copyButton = document.createElement('button');
-        copyButton.id = COPY_BUTTON_ID;
         copyButton.type = 'button';
         copyButton.textContent = '复制链接';
         Object.assign(copyButton.style, {
@@ -262,34 +257,56 @@
             });
         });
 
-        const copyButtonAnchor = document.querySelector(COPY_BUTTON_ANCHOR_SELECTOR);
+        result.append(link, copyButton);
+        qrcode.insertAdjacentElement('afterend', result);
+    }
 
-        if (copyButtonAnchor) {
-            Object.assign(copyButton.style, {
-                marginRight: '8px',
-                verticalAlign: 'middle',
-            });
-            copyButtonAnchor.insertAdjacentElement('beforebegin', copyButton);
-            result.append(link);
-        } else {
-            result.append(link, copyButton);
+    const DECODE_BUTTON_ID = 'tm-seedhub-qr-decode';
+    const DECODE_BUTTON_ANCHOR_SELECTOR = '.mobile-pan > span.text';
+
+    // Move the button out of its default fixed bottom-right spot and inline it
+    // ahead of the mobile panel text. Falls back to the fixed spot when the
+    // anchor is missing, and re-runs so a late-rendered anchor still wins.
+    function placeDecodeButton(button) {
+        const anchor = document.querySelector(DECODE_BUTTON_ANCHOR_SELECTOR);
+
+        if (!anchor || button.nextElementSibling === anchor) {
+            return;
         }
 
-        qrcode.insertAdjacentElement('afterend', result);
+        Object.assign(button.style, {
+            position: 'static',
+            right: '',
+            bottom: '',
+            marginRight: '8px',
+            verticalAlign: 'middle',
+        });
+
+        anchor.insertAdjacentElement('beforebegin', button);
     }
 
     function setupQrTools() {
         const qrcode = document.getElementById('qrcode');
         const image = qrcode?.querySelector(':scope > img');
 
-        if (!qrcode || !image || qrcode.dataset.tmSeedhubQrReady) {
+        if (!qrcode || !image) {
+            return;
+        }
+
+        if (qrcode.dataset.tmSeedhubQrReady) {
+            const existingButton = document.getElementById(DECODE_BUTTON_ID);
+
+            if (existingButton) {
+                placeDecodeButton(existingButton);
+            }
+
             return;
         }
 
         qrcode.dataset.tmSeedhubQrReady = '1';
 
-        UserScriptUI.createButton({
-            id: 'tm-seedhub-qr-decode',
+        const decodeButton = UserScriptUI.createButton({
+            id: DECODE_BUTTON_ID,
             text: '识别二维码',
             onClick: async () => {
                 try {
@@ -305,6 +322,8 @@
                 }
             },
         });
+
+        placeDecodeButton(decodeButton);
     }
 
     replaceLinkText(document);
