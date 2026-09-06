@@ -10,7 +10,7 @@
 - 页面：`https://www.seedhub.cc/movies/{id}/`、`https://www.seedhub.cc/link_start/*`
 - 范围：`.seed-list > ul > li > a[title]`
 
-将匹配链接的 `innerText` 替换为其 `title` 属性值，并处理后续动态加载的内容。在二维码页面点击“识别二维码”，脚本会将 `#qrcode > img` 解码为可点击链接，并提供“复制链接”按钮。
+将匹配链接的 `innerText` 替换为其 `title` 属性值，并处理后续动态加载的内容。在二维码页面点击“识别二维码”，脚本会将 `#qrcode > img` 解码为可点击链接，并提供“复制链接”按钮。该按钮会插入到 `.mobile-pan > span.text` 前面；页面上没有该元素时，则回退到显示在识别结果框内。
 
 ### Bilibili：生成视频下载命令
 
@@ -41,4 +41,4 @@
 
 ## 发布
 
-每个版本通过 Git tag 发布。当前版本：`v1.4.2`。
+每个版本通过 Git tag 发布。当前版本：`v1.4.3`。

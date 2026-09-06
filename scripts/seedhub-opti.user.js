@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SeedHub opti
 // @namespace    https://github.com/dasewing/tm-scripts
-// @version      1.4.1
+// @version      1.4.3
 // @description  Replace SeedHub seed titles and decode/copy QR-code links.
 // @match        https://www.seedhub.cc/movies/*
 // @match        https://www.seedhub.cc/link_start/*
@@ -204,8 +204,12 @@
         return result.data.trim();
     }
 
+    const COPY_BUTTON_ID = 'tm-seedhub-qr-copy';
+    const COPY_BUTTON_ANCHOR_SELECTOR = '.mobile-pan > span.text';
+
     function showQrResult(qrcode, value) {
         document.getElementById('tm-seedhub-qr-result')?.remove();
+        document.getElementById(COPY_BUTTON_ID)?.remove();
 
         const result = document.createElement('div');
         result.id = 'tm-seedhub-qr-result';
@@ -239,6 +243,7 @@
         }
 
         const copyButton = document.createElement('button');
+        copyButton.id = COPY_BUTTON_ID;
         copyButton.type = 'button';
         copyButton.textContent = '复制链接';
         Object.assign(copyButton.style, {
@@ -257,7 +262,19 @@
             });
         });
 
-        result.append(link, copyButton);
+        const copyButtonAnchor = document.querySelector(COPY_BUTTON_ANCHOR_SELECTOR);
+
+        if (copyButtonAnchor) {
+            Object.assign(copyButton.style, {
+                marginRight: '8px',
+                verticalAlign: 'middle',
+            });
+            copyButtonAnchor.insertAdjacentElement('beforebegin', copyButton);
+            result.append(link);
+        } else {
+            result.append(link, copyButton);
+        }
+
         qrcode.insertAdjacentElement('afterend', result);
     }
 
