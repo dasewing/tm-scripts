@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SeedHub opti
 // @namespace    https://github.com/dasewing/tm-scripts
-// @version      1.4.4
+// @version      1.4.5
 // @description  Replace SeedHub seed titles and decode/copy QR-code links.
 // @match        https://www.seedhub.cc/movies/*
 // @match        https://www.seedhub.cc/link_start/*
@@ -262,7 +262,7 @@
     }
 
     const DECODE_BUTTON_ID = 'tm-seedhub-qr-decode';
-    const DECODE_BUTTON_ANCHOR_SELECTOR = '.mobile-pan > span.text';
+    const DECODE_BUTTON_ANCHOR_SELECTOR = '.mobile-pan > span.txt';
 
     // Move the button out of its default fixed bottom-right spot and inline it
     // ahead of the mobile panel text. Falls back to the fixed spot when the
@@ -274,11 +274,16 @@
             return;
         }
 
+        // The panel is only as wide as the 200px QR image, so shrink the button
+        // from its floating size to keep it on one line next to the label.
         Object.assign(button.style, {
             position: 'static',
             right: '',
             bottom: '',
             marginRight: '8px',
+            padding: '4px 10px',
+            fontSize: '13px',
+            boxShadow: 'none',
             verticalAlign: 'middle',
         });
 
