@@ -28,6 +28,12 @@
 - 页面：`https://search.jd.com/Search*`
 - 功能：自动隐藏带有“京喜自营”标签的商品卡片，支持搜索结果动态加载。
 
+### CLM：种子收藏与访问管理
+
+- 安装：[clm-torrent-library.user.js](https://raw.githubusercontent.com/dasewing/tm-scripts/main/scripts/clm-torrent-library.user.js)
+- 页面：`https://www.clmclm.com/search-*.html`、`https://www.clmclm.com/hash/*.html`、`https://mypikpak.com/drive/all*`
+- 功能：详情页和搜索结果卡片均可收藏、备注和复制磁链；搜索结果徽章显示复制次数及上次访问时间。可隐藏单条种子，默认不显示在搜索结果和种子库，搜索页可临时显示已隐藏结果，种子库可筛选已隐藏记录并取消隐藏。左下角“种子库”以表格管理记录，支持搜索、筛选、排序、收藏、备注、全选、复制和删除。PikPak 页面共享同一种子库；打开“创建云下载任务”弹窗后可从种子库选择单条或批量磁链填入，最后由用户确认创建。首次更新后需访问一次 CLM 页面，旧记录才会迁移到跨站存储。
+
 ### 微信文章链接自动跳转
 
 - 安装：[weixin-article-link-auto-redirector.user.js](https://raw.githubusercontent.com/dasewing/tm-scripts/main/scripts/weixin-article-link-auto-redirector.user.js)
